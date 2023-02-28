@@ -452,6 +452,10 @@ class NebariExtension(Base):
     logout: typing.Optional[str]
     envs: typing.Optional[typing.List[NebariExtensionEnv]]
 
+class TerraformModuleExtention(Base):
+    name: str
+    source: str
+    configuration: typing.Optional[typing.Dict]
 
 class Ingress(Base):
     terraform_overrides: typing.Any
@@ -563,6 +567,7 @@ class Main(Base):
     terraform_state: typing.Optional[TerraformState]
     certificate: Certificate
     helm_extensions: typing.Optional[typing.List[HelmExtension]]
+    tf_modules_extensions: typing.Optional[typing.List[TerraformModuleExtention]]
     prefect: typing.Optional[Prefect]
     cdsdashboards: CDSDashboards
     security: Security

@@ -353,6 +353,23 @@ def stage_07_kubernetes_services(stage_outputs, config):
 
 
 def stage_08_nebari_tf_extensions(stage_outputs, config):
+
+    if config.get('tf_modules_extensions') :
+        tf_modules_extensions = {
+            "module": {}
+        }
+
+        for extension in config.get('tf_modules_extensions', []):
+            tf_modules_extensions['module'][extension['name']] = {
+                "source": extension['source'],
+                "configuration": extension['configuration']
+            }
+    else :
+        tf_modules_extensions = {}
+
+    with open('stages/08-nebari-tf-extensions/tf-modules-extensions.tf.json','w') as file:
+        file.write(json.dumps(tf_modules_extensions, indent=4))
+
     return {
         "environment": config["namespace"],
         "endpoint": config["domain"],

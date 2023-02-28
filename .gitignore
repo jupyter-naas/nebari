@@ -13,7 +13,7 @@ __pycache__
 # nebari
 nebari-config.yaml
 config
-stages/
+/stages/
 tests/
 tmp/
 .DS_Store

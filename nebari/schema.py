@@ -455,6 +455,7 @@ class NebariExtension(Base):
 class TerraformModuleExtention(Base):
     name: str
     source: str
+    version: typing.Optional[str]
     configuration: typing.Optional[typing.Dict]
 
 class Ingress(Base):

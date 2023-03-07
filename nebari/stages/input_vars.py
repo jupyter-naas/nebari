@@ -361,10 +361,14 @@ def stage_08_nebari_tf_extensions(stage_outputs, config):
         for extension in config.get('tf_modules_extensions', []):
             tf_modules_extensions['module'][extension['name']] = {
                 "source": extension['source'],
-                "version": extension['version'],
             }
-            for key, value in  extension['configuration'].items():
-                tf_modules_extensions['module'][extension['name']][key] = value  
+            if "version" in extension:
+                tf_modules_extensions['module'][extension['name']] = {
+                    "version": extension['version'],
+            }
+            if "configuration" in extension:
+                for key, value in  extension['configuration'].items():
+                    tf_modules_extensions['module'][extension['name']][key] = value  
     else :
         tf_modules_extensions = {}
 

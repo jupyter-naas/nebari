@@ -15,9 +15,10 @@ local_scheme = "node-and-timestamp"
 
 
 ### Project ###
+#dynamic = ["version"]
 [project]
 name = "nebari"
-dynamic = ["version"]
+version = "2023.1.1"
 description = "A Jupyter and Dask-powered open source data science platform."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -65,6 +66,7 @@ dependencies = [
     "rich==13.2.0",
     "ruamel.yaml==0.17.21",
     "typer==0.7.0",
+    "pyyaml==6.0",
 ]
 
 [project.optional-dependencies]

@@ -1,9 +1,5 @@
-# docs
-.nox
-_build
-
-# setuptools scm
-nebari/_version.py
+# git
+.github
 
 # ignore terraform state
 .terraform
@@ -13,37 +9,11 @@ terraform.tfstate.backup
 
 # python
 __pycache__
-build/
-*.egg
-*.egg-info/
-dist/
-env/
 
-# IntelliJ
-.idea/
-
-# nix
-result
-shell.nix
-.envrc
-build.nix
-.direnv
-
-# ignore deploments
-do-jupyterhub
-jupyterhub-aws
-gcp-jupyterhub
-quansight-terraform-modules
-config.yaml
-data*
-
-# modules - removed this because .terraform folder is in .gitignore of deployments,
-# this should cover imported modules while not gitignoring our new direct 'modules' folder.
-
-# ignore nebari files
+# nebari
 nebari-config.yaml
-
-.vscode/
-.pytest_cache
-
-/.ruff_cache
+config
+/stages/
+tests/
+tmp/
+.DS_Store

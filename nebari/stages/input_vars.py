@@ -353,6 +353,38 @@ def stage_07_kubernetes_services(stage_outputs, config):
 
 
 def stage_08_nebari_tf_extensions(stage_outputs, config):
+
+
+    if config.get('tf_modules_extensions') :
+        tf_modules_extensions = {
+            "module": {}
+        }
+        for extension in config.get('tf_modules_extensions', []):
+            if "version" in extension:
+                tf_modules_extensions['module'][extension['name']] = {
+                    "version": extension['version'],
+            }
+            tf_modules_extensions['module'][extension['name']] = {
+                "source": extension['source'],
+                "kubernetes_config_path": os.path.join(tempfile.gettempdir(), "NEBARI_KUBECONFIG"),      
+                "namespace": config["namespace"],
+                "endpoint": config["domain"],
+                "nebari_realm_id": stage_outputs["stages/06-kubernetes-keycloak-configuration"][
+                    "realm_id"
+                ]["value"],
+            }
+            if "configuration" in extension:
+                for key, value in  extension['configuration'].items():
+                    tf_modules_extensions['module'][extension['name']][key] = value  
+    else :
+        tf_modules_extensions = {}
+
+    filename = "stages/08-nebari-tf-extensions/tf-modules-extensions.tf.json"
+    if os.path.exists(filename):
+        os.remove(filename)
+    with open(filename, "w") as file:
+        file.write(json.dumps(tf_modules_extensions, indent=4))
+
     return {
         "environment": config["namespace"],
         "endpoint": config["domain"],

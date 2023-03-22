@@ -456,6 +456,10 @@ class TerraformModuleExtention(Base):
     name: str
     source: str
     version: typing.Optional[str]
+    # kubeconfig_filename: str
+    # namespace: str
+    # endpoint: str
+    # nebari_realm_id: str
     configuration: typing.Optional[typing.Dict]
 
 class Ingress(Base):
